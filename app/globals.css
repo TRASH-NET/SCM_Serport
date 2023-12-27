@@ -167,6 +167,13 @@ html, body {
   border: 1px solid #2e2e2e;
 }
 
+/* ! SISTEMAS - COMPONENTE */
+
+.component {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
 .control_horas{
   grid-column: 1/4;
   grid-row: 1/-1;
@@ -191,3 +198,5 @@ html, body {
   background-position: center bottom;
   background-size: cover;
 }
+
+
