@@ -1,14 +1,8 @@
 'use client'
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
+
+import { useState } from 'react';
 
 import {
-	flexRender,
 	getCoreRowModel,
 	useReactTable,
 	getPaginationRowModel,
@@ -16,15 +10,15 @@ import {
 	getSortedRowModel
 } from '@tanstack/react-table';
 import { rankItem } from '@tanstack/match-sorter-utils';
-import { useState } from 'react';
-import { Button } from "@/components/ui/button";
 
-import { FaRegCheckCircle } from "react-icons/fa";
-import ModalCloseMaintenanceRoute from "../ModalCloseMaintenanceRoute";
 import { formatearFecha2 } from "@/helpers/dates";
+
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { faSearch, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@/components/ui/button";
+import ModalCloseMaintenanceRoute from "../ModalCloseMaintenanceRoute";
+import TableComponent from "./TableComponent";
+
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -36,10 +30,9 @@ const tableFilter = (row, columnId, value, addMeta) => {
 	return itemRank.passed;
 }
 
-const DataTable = ({ mmrr, components }) => {
+const DataTable = ({ mmrrInMonth, components }) => {
 
-
-	const [data, setData] = useState(mmrr);
+	const [data, setData] = useState(mmrrInMonth ? mmrrInMonth : []);
 	const [rowSelection, setRowSelection] = useState({});
 	const [globalFilter, setGlobalFilter] = useState('');
 	const [sorting, setSorting] = useState([]);
@@ -146,8 +139,6 @@ const DataTable = ({ mmrr, components }) => {
 	})
 
 
-
-
 	return (
 		<>
 			<div className="flex items-center justify-between space-x-2 px-2">
@@ -211,57 +202,9 @@ const DataTable = ({ mmrr, components }) => {
 
 			</div>
 			<div className='h-1/2 max-h-[320px] overflow-y-scroll border-2 rounded-md border-gray-200 p-2 scrollbar max-w-full'>
-				<Table className="w-full">
-					<TableHeader>
-						{table.getHeaderGroups().map(headerGroup => (
-							<TableRow key={headerGroup.id} className="font-bold capitalize text-[12px]">
-								{
-									headerGroup.headers.map(header => (
-										<TableCell key={header.id} className="p-4">
-											{
-												header.isPlaceholder
-													? null
-													:
-													<div
-														className={cn("flex items-center gap-2", header.column.getCanSort() && "cursor-pointer select-none")}
-														onClick={header.column.getToggleSortingHandler()}
-													>
-														{flexRender(
-															header.column.columnDef.header,
-															header.getContext()
-														)}
-														{
-															{
-																asc: <FontAwesomeIcon icon={faSortUp} />,
-																desc: <FontAwesomeIcon icon={faSortDown} />
-															}[header.column.getIsSorted() ?? null]
-														}
-													</div>
-											}
-										</TableCell>
-									))
-								}
-							</TableRow>
-						))}
-					</TableHeader>
-					<TableBody>
-						{table.getRowModel().rows.map(row => (
-							<TableRow key={row.id}>
-								{row.getVisibleCells().map(cell => (
-									<TableCell key={cell.id} className="capitalize text-[12px]">
-										{
-											flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext()
-											)
-										}
-
-									</TableCell>
-								))}
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
+				<TableComponent
+					table={table}
+				/>
 			</div >
 		</>
 

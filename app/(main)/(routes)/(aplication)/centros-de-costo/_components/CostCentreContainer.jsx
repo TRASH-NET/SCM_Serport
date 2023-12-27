@@ -5,7 +5,7 @@ import CardCC from "./CardCC";
 import AddCC from "./AddCC";
 import DataTable from "./table/DataTable";
 
-const CostCentreContainer = ({ operations, costCentres, components, mmrr, employees, month }) => {
+const CostCentreContainer = ({ operations, costCentres, components, mmrrInMonth, employees, month }) => {
 
     return (
         <>
@@ -27,7 +27,7 @@ const CostCentreContainer = ({ operations, costCentres, components, mmrr, employ
             <h3 className="text-lg font-semibold capitalize my-5">Rutinas de mantenimiento -&gt; {month}</h3>
             <div className="pr-6 relative">
                 <DataTable
-                    mmrr={mmrr}
+                    mmrrInMonth={mmrrInMonth}
                     components={components}
                 />
             </div>

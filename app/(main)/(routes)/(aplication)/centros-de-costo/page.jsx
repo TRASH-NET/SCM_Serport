@@ -14,8 +14,7 @@ const CentrosDeCosto = async () => {
     const operations = await getOperations();
     const costCentres = await getCostCentres();
     const components = await getComponents();
-    const mmrr = await getMaintenanceRoutes(); //? mmrr = todas las rutinas de manteinimiento
-    // const mmrrInMonth = await getMaintenanceRouteToDoInMonth(); //? mmrrInMonth = rutinas de mantenimiento en el mes
+    const mmrrInMonth = await getMaintenanceRouteToDoInMonth(); //? mmrrInMonth = rutinas de mantenimiento en el mes
     const employees = await getEmployees();
 
 
@@ -27,7 +26,7 @@ const CentrosDeCosto = async () => {
                 operations={operations}
                 costCentres={costCentres}
                 components={components}
-                mmrr={mmrr}
+                mmrrInMonth={mmrrInMonth}
                 employees={employees}
                 month={month}
             />
