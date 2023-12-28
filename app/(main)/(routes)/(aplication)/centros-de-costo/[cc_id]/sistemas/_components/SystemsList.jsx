@@ -20,7 +20,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/navigation";
 
-const SystemsList = ({ costCentreSystems, setComponent }) => {
+const SystemsList = ({ filteredSystems, setComponent }) => {
 
     const router = useRouter();
 
@@ -39,7 +39,7 @@ const SystemsList = ({ costCentreSystems, setComponent }) => {
 
     return (
         <div>
-            {costCentreSystems.map((system) => (
+            {filteredSystems.map((system) => (
                 <div className="flex items-start justify-start" key={system.id}>
                     <div className="pt-3 cursor-pointer">
                         <AlertDialog>

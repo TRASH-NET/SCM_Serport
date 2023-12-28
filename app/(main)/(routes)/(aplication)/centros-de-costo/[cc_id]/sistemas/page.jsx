@@ -1,6 +1,6 @@
 import { getCostCentre } from '@/models/centro-de-costo';
 
-import SystemsContainer from './SystemsContainer';
+import SystemsContainer from './_components/SystemsContainer';
 
 
 
