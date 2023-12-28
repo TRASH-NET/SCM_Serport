@@ -147,7 +147,7 @@ html, body {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(10, 1fr);
   height: 83%;
-  gap: 20px;
+  gap: 10px;
 }
 
 .sistemas_lista{
