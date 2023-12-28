@@ -60,8 +60,8 @@ export const getCurrentWeek = () => {
 
 export const getCurrentMonth = () => {
     const currentDate = new Date();
-    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    const next30Days = new Date(currentDate);
+    next30Days.setDate(currentDate.getDate() + 30);
 
-    return `${formatearFecha3(firstDayOfMonth)} - ${formatearFecha3(lastDayOfMonth)}`;
+    return `${formatearFecha3(currentDate)} - ${formatearFecha3(next30Days)}`;
 };
